@@ -50,7 +50,7 @@ mottaker_final as (
       ELSE NULL
     END AS KUN_KRONISK_SYKT_BARN_OVER12
   from pre_final p
-  left outer join dt_person.ident_off_id_til_fk_person1 ident
+  left outer join {{source ('person', 'ident_off_id_til_fk_person1')}} ident
   on p.soker = ident.off_id
   and p.kafka_mottatt_dato between ident.gyldig_fra_dato and ident.gyldig_til_dato
   and ident.skjermet_kode = 0
@@ -60,7 +60,7 @@ pleietrengende_final as(
   select m.*
     ,nvl(ident.fk_person1, -1) as FK_PERSON1_PLEIETRENGENDE
   from mottaker_final m
-  left outer join dt_person.ident_off_id_til_fk_person1 ident
+  left outer join {{source ('person', 'ident_off_id_til_fk_person1')}} ident
   on m.pleietrengende = ident.off_id
   and m.kafka_mottatt_dato between ident.gyldig_fra_dato and ident.gyldig_til_dato
   and ident.skjermet_kode = 0

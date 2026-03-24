@@ -86,7 +86,7 @@ select
     f.*,
     pk_dim_diagnose fk_dim_diagnose
     from final f
-      join dt_p.dim_diagnose
+      join {{ source( 'dt_p','dim_diagnose') }}  dim_diagnose
       on f.kode = dim_diagnose.diagnose_kode
       and f.type = upper(dim_diagnose.diagnose_tabell)
       and f.vedtaks_tidspunkt between dim_diagnose.gyldig_fra_dato and dim_diagnose.gyldig_til_dato
