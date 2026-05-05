@@ -17,7 +17,7 @@ select * from pp_meta_data,
   json_table(melding, '$'
     columns (
       nested             path '$.relasjon[*]' columns (
-      kode               varchar2 path '$.kode'
+      kode               varchar2(255 char) path '$.kode'
       ,fom               date path '$.fom'
       ,tom               date path '$.tom'
       )

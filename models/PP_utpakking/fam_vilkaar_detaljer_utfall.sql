@@ -20,15 +20,15 @@ pre_final as (
       dato_fom          date path '$.fom'
       ,dato_tom         date path '$.tom'
       ,nested           path '$.inngangsvilkår[*]' columns (
-      utfall            varchar2 path '$.utfall'
-      ,vilkaar          varchar2 path '$.vilkår',
+      utfall            varchar2(255 char) path '$.utfall'
+      ,vilkaar          varchar2(255 char) path '$.vilkår',
       nested            path '$.detaljertUtfall[*]' columns (
-      GJELDER_KRAVSTILLER             varchar2 path '$.gjelderKravstiller',
-      GJELDER_AKTIVITET_TYPE          varchar2 path '$.gjelderAktivitetType',
-      GJELDER_ORGANISASJONSNUMMER     varchar2 path '$.gjelderOrganisasjonsnummer',
-      GJELDER_AKTOR_ID                varchar2 path '$.gjelderAktørId',
-      GJELDER_ARBEIDSFORHOLD_ID       varchar2 path '$.gjelderArbeidsforholdId',
-      det_utfall                      varchar2 path '$.utfall'
+      GJELDER_KRAVSTILLER             varchar2(255 char) path '$.gjelderKravstiller',
+      GJELDER_AKTIVITET_TYPE          varchar2(255 char) path '$.gjelderAktivitetType',
+      GJELDER_ORGANISASJONSNUMMER     varchar2(255 char) path '$.gjelderOrganisasjonsnummer',
+      GJELDER_AKTOR_ID                varchar2(255 char) path '$.gjelderAktørId',
+      GJELDER_ARBEIDSFORHOLD_ID       varchar2(255 char) path '$.gjelderArbeidsforholdId',
+      det_utfall                      varchar2(255 char) path '$.utfall'
           )
         )
       )

@@ -16,10 +16,10 @@ pre_final as (
 select * from pp_meta_data,
   json_table(melding, '$'
     columns (
-      vedtaks_tidspunkt  varchar2 path '$.vedtakstidspunkt'
+      vedtaks_tidspunkt  varchar2(255 char) path '$.vedtakstidspunkt'
      ,nested path '$.diagnosekoder[*]' columns (
-      kode varchar2 path '$.kode'
-     ,type varchar2 path '$.type'
+      kode varchar2(255 char) path '$.kode'
+     ,type varchar2(255 char) path '$.type'
       )
     )
   ) j

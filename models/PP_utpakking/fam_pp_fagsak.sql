@@ -12,15 +12,15 @@ pre_final as (
 select * from pp_meta_data,
   json_table(melding, '$'
     COLUMNS (
-      behandlings_id                        varchar2 path '$.behandlingUuid'
-      ,pleietrengende                       varchar2 path '$.pleietrengende'
-      ,saksnummer                           varchar2 path '$.saksnummer'
-      ,soker                                varchar2 path '$.søker'
-      ,utbetalingsreferanse                 varchar2 path '$.utbetalingsreferanse'
-      ,ytelse_type                          varchar2 path '$.ytelseType'
-      ,vedtaks_tidspunkt                    varchar2 path '$.vedtakstidspunkt'
-      ,forrige_behandlings_id               varchar2 path '$.forrigeBehandlingUuid'
-      ,KUN_KRONISK_SYKT_BARN_OVER12         varchar2 path '$.harBrukerKunOmsorgenForKroniskSyktBarnOver12'
+      behandlings_id                        varchar2(255 char) path '$.behandlingUuid'
+      ,pleietrengende                       varchar2(255 char) path '$.pleietrengende'
+      ,saksnummer                           varchar2(255 char) path '$.saksnummer'
+      ,soker                                varchar2(255 char) path '$.søker'
+      ,utbetalingsreferanse                 varchar2(255 char) path '$.utbetalingsreferanse'
+      ,ytelse_type                          varchar2(255 char) path '$.ytelseType'
+      ,vedtaks_tidspunkt                    varchar2(255 char) path '$.vedtakstidspunkt'
+      ,forrige_behandlings_id               varchar2(255 char) path '$.forrigeBehandlingUuid'
+      ,KUN_KRONISK_SYKT_BARN_OVER12         varchar2(255 char) path '$.harBrukerKunOmsorgenForKroniskSyktBarnOver12'
     )
   ) j
 ),

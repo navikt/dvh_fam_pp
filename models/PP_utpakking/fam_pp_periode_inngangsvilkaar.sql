@@ -20,8 +20,8 @@ pre_final as (
       dato_fom         date path '$.fom'
       ,dato_tom         date path '$.tom'
       , nested path '$.inngangsvilkår[*]' columns (
-        utfall  varchar2 path '$.utfall'
-        ,vilkaar varchar2 path '$.vilkår'
+        utfall  varchar2(255 char) path '$.utfall'
+        ,vilkaar varchar2(255 char) path '$.vilkår'
       )
     )
   )

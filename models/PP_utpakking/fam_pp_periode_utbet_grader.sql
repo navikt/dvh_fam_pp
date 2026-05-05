@@ -20,16 +20,16 @@ pre_final as (
       dato_fom         date path '$.fom'
       ,dato_tom         date path '$.tom'
       , nested path '$.utbetalingsgrader[*]' columns (
-         aktivitet_status       varchar2 path '$.aktivitetStatus'
-        ,arbeidsforhold_aktorid varchar2 path '$.arbeidsforhold.aktørId'
-        ,arbeidsforhold_id      varchar2 path '$.arbeidsforhold.arbeidsforholdId'
-        ,arbeidsforhold_orgnr   varchar2 path '$.arbeidsforhold.organisasjonsnummer'
-        ,arbeidsforhold_type    varchar2 path '$.arbeidsforhold.type'
+         aktivitet_status       varchar2(255 char) path '$.aktivitetStatus'
+        ,arbeidsforhold_aktorid varchar2(255 char) path '$.arbeidsforhold.aktørId'
+        ,arbeidsforhold_id      varchar2(255 char) path '$.arbeidsforhold.arbeidsforholdId'
+        ,arbeidsforhold_orgnr   varchar2(255 char) path '$.arbeidsforhold.organisasjonsnummer'
+        ,arbeidsforhold_type    varchar2(255 char) path '$.arbeidsforhold.type'
         ,dagsats                NUMBER path '$.dagsats'
-        ,faktisk_arbeidstid     varchar2 path '$.faktiskArbeidstid'
-        ,normal_arbeidstid      varchar2 path '$.normalArbeidstid'
+        ,faktisk_arbeidstid     varchar2(255 char) path '$.faktiskArbeidstid'
+        ,normal_arbeidstid      varchar2(255 char) path '$.normalArbeidstid'
         ,utbetalingsgrad        NUMBER path '$.utbetalingsgrad'
-        ,bruker_er_mottaker     varchar2 path '$.brukerErMottaker'
+        ,bruker_er_mottaker     varchar2(255 char) path '$.brukerErMottaker'
         )
       )
     )

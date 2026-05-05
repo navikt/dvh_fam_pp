@@ -20,7 +20,7 @@ pre_final as (
       dato_fom         date path '$.fom'
       ,dato_tom         date path '$.tom'
       , nested path '$.årsaker[*]' columns (
-        aarsak varchar2 path '$[*]'
+        aarsak varchar2(255 char) path '$[*]'
         )
       )
     )
