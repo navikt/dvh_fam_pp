@@ -61,7 +61,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_PP_PERIODE_UTBET_GRADER
+  dvh_fam_pp.hibernate_sequence.nextval as PK_PP_PERIODE_UTBET_GRADER
   ,ARBEIDSFORHOLD_AKTORID
   ,ARBEIDSFORHOLD_ID
   ,ARBEIDSFORHOLD_ORGNR

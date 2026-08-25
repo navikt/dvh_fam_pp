@@ -67,7 +67,7 @@ pleietrengende_final as(
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_pp_FAGSAK
+  dvh_fam_pp.hibernate_sequence.nextval as PK_pp_FAGSAK
   ,behandlings_id
   ,FORRIGE_BEHANDLINGS_ID
   ,FK_PERSON1_MOTTAKER

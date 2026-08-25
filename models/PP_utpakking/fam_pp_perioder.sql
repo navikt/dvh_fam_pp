@@ -69,7 +69,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_PP_PERIODER
+  dvh_fam_pp.hibernate_sequence.nextval as PK_PP_PERIODER
   ,BEREDSKAP
   ,BRUTTO_BEREGNINGSGRUNNLAG
   ,DATO_FOM

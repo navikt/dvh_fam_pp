@@ -93,7 +93,7 @@ select
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as pk_pp_diagnose
+  dvh_fam_pp.hibernate_sequence.nextval as pk_pp_diagnose
   ,kode
   ,type
   ,fk_pp_fagsak

@@ -45,7 +45,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_PP_PERIODE_INNGANGSVILKAAR
+  dvh_fam_pp.hibernate_sequence.nextval as PK_PP_PERIODE_INNGANGSVILKAAR
   ,UTFALL
   ,VILKAAR
   ,FK_PP_PERIODER

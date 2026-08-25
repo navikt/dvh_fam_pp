@@ -38,7 +38,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_PP_RELASJONER
+  dvh_fam_pp.hibernate_sequence.nextval as PK_PP_RELASJONER
   ,DATO_FOM
   ,DATO_TOM
   ,KODE

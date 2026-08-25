@@ -50,7 +50,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_VILKAAR_DETALJERT_UTFALL
+  dvh_fam_pp.hibernate_sequence.nextval as PK_VILKAAR_DETALJERT_UTFALL
   ,GJELDER_KRAVSTILLER
   ,GJELDER_AKTIVITET_TYPE
   ,GJELDER_ORGANISASJONSNUMMER

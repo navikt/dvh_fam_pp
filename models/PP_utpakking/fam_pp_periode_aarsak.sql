@@ -40,7 +40,7 @@ final as (
 )
 
 select
-  dvh_fampp_kafka.hibernate_sequence.nextval as PK_PP_PERIODE_AARSAK
+  dvh_fam_pp.hibernate_sequence.nextval as PK_PP_PERIODE_AARSAK
   ,AARSAK
   ,FK_PP_PERIODER
   ,localtimestamp as LASTET_DATO
