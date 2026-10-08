@@ -14,18 +14,18 @@ pp_perioder as (
 
 pre_final as (
   select * from pp_meta_data,
-  json_table(melding, '$'
-    columns (
-      nested path '$.perioder[*]' columns (
-      dato_fom         date path '$.fom'
-      ,dato_tom         date path '$.tom'
-      , nested path '$.inngangsvilkår[*]' columns (
-        utfall  varchar2(255 char) path '$.utfall'
-        ,vilkaar varchar2(255 char) path '$.vilkår'
+    json_table(melding, '$'
+      columns (
+        nested            PATH '$.perioder[*]' columns (
+        dato_fom          DATE PATH '$.fom'
+        ,dato_tom         DATE PATH '$.tom'
+        ,nested           PATH '$.inngangsvilkår[*]' columns (
+          utfall          VARCHAR2(255 CHAR)  PATH '$.utfall'
+          ,vilkaar        VARCHAR2(255 CHAR)  PATH '$.vilkår'
+          )
+        )
       )
-    )
-  )
-  ) j
+    ) j
   where utfall is not null
 ),
 
@@ -50,7 +50,6 @@ select
   ,VILKAAR
   ,FK_PP_PERIODER
   ,localtimestamp as LASTET_DATO
-  ,cast(null as varchar2(4)) as DETALJERT_UTFALL
   ,dato_fom
   ,dato_tom
   ,kafka_offset

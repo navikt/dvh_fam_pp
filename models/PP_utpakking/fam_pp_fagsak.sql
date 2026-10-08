@@ -9,20 +9,20 @@ with pp_meta_data as (
 ),
 
 pre_final as (
-select * from pp_meta_data,
-  json_table(melding, '$'
-    COLUMNS (
-      behandlings_id                        varchar2(255 char) path '$.behandlingUuid'
-      ,pleietrengende                       varchar2(255 char) path '$.pleietrengende'
-      ,saksnummer                           varchar2(255 char) path '$.saksnummer'
-      ,soker                                varchar2(255 char) path '$.søker'
-      ,utbetalingsreferanse                 varchar2(255 char) path '$.utbetalingsreferanse'
-      ,ytelse_type                          varchar2(255 char) path '$.ytelseType'
-      ,vedtaks_tidspunkt                    varchar2(255 char) path '$.vedtakstidspunkt'
-      ,forrige_behandlings_id               varchar2(255 char) path '$.forrigeBehandlingUuid'
-      ,KUN_KRONISK_SYKT_BARN_OVER12         varchar2(255 char) path '$.harBrukerKunOmsorgenForKroniskSyktBarnOver12'
-    )
-  ) j
+  select * from pp_meta_data,
+      json_table(melding, '$'
+        COLUMNS (
+            behandlings_id                        VARCHAR2(255 CHAR) PATH '$.behandlingUuid'
+            ,pleietrengende                       VARCHAR2(255 CHAR) PATH '$.pleietrengende'
+            ,saksnummer                           VARCHAR2(255 CHAR) PATH '$.saksnummer'
+            ,soker                                VARCHAR2(255 CHAR) PATH '$.søker'
+            ,utbetalingsreferanse                 VARCHAR2(255 CHAR) PATH '$.utbetalingsreferanse'
+            ,ytelse_type                          VARCHAR2(255 CHAR) PATH '$.ytelseType'
+            ,vedtaks_tidspunkt                    TIMESTAMP PATH '$.vedtakstidspunkt'
+            ,forrige_behandlings_id               VARCHAR2(255 CHAR) PATH '$.forrigeBehandlingUuid'
+            ,KUN_KRONISK_SYKT_BARN_OVER12         VARCHAR2(255 CHAR) PATH '$.harBrukerKunOmsorgenForKroniskSyktBarnOver12'
+        )
+    ) j
 ),
 
 mottaker_final as (
@@ -39,7 +39,7 @@ mottaker_final as (
     ,nvl(ident.fk_person1, -1) as FK_PERSON1_MOTTAKER
     ,p.kafka_partition
     ,p.pk_pp_meta_data as fk_pp_metadata
-    ,CAST(to_timestamp_tz(p.vedtaks_tidspunkt, 'yyyy-mm-dd"T"hh24:mi:ss.ff3') AT TIME ZONE 'Europe/Belgrade' AS TIMESTAMP) vedtaks_tidspunkt
+    ,p.vedtaks_tidspunkt
     ,p.forrige_behandlings_id
     ,CASE
       WHEN ytelse_type = 'OMP' THEN
@@ -57,7 +57,8 @@ mottaker_final as (
 ),
 
 pleietrengende_final as(
-  select m.*
+  select 
+    m.*
     ,nvl(ident.fk_person1, -1) as FK_PERSON1_PLEIETRENGENDE
   from mottaker_final m
   left outer join {{source ('person', 'ident_off_id_til_fk_person1')}} ident

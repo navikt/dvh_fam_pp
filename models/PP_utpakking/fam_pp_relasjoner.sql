@@ -13,16 +13,16 @@ pp_fagsak AS (
 ),
 
 pre_final as (
-select * from pp_meta_data,
-  json_table(melding, '$'
-    columns (
-      nested             path '$.relasjon[*]' columns (
-      kode               varchar2(255 char) path '$.kode'
-      ,fom               date path '$.fom'
-      ,tom               date path '$.tom'
+  select * from pp_meta_data,
+    json_table(melding, '$'
+      columns (
+        nested     PATH '$.relasjon[*]' columns (
+        kode       VARCHAR2(255 CHAR) PATH '$.kode'
+        ,fom       DATE  PATH '$.fom'
+        ,tom       DATE  PATH '$.tom'
+        )
       )
-    )
-  ) j
+    ) j
   where kode is not null
 ),
 

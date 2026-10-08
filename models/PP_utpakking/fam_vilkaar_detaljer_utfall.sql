@@ -16,19 +16,19 @@ pre_final as (
   select * from pp_meta_data,
   json_table(melding, '$'
     columns (
-      nested path '$.perioder[*]' columns (
-      dato_fom          date path '$.fom'
-      ,dato_tom         date path '$.tom'
-      ,nested           path '$.inngangsvilkår[*]' columns (
-      utfall            varchar2(255 char) path '$.utfall'
-      ,vilkaar          varchar2(255 char) path '$.vilkår',
-      nested            path '$.detaljertUtfall[*]' columns (
-      GJELDER_KRAVSTILLER             varchar2(255 char) path '$.gjelderKravstiller',
-      GJELDER_AKTIVITET_TYPE          varchar2(255 char) path '$.gjelderAktivitetType',
-      GJELDER_ORGANISASJONSNUMMER     varchar2(255 char) path '$.gjelderOrganisasjonsnummer',
-      GJELDER_AKTOR_ID                varchar2(255 char) path '$.gjelderAktørId',
-      GJELDER_ARBEIDSFORHOLD_ID       varchar2(255 char) path '$.gjelderArbeidsforholdId',
-      det_utfall                      varchar2(255 char) path '$.utfall'
+      nested                          PATH '$.perioder[*]' columns (
+      dato_fom                        DATE  PATH '$.fom'
+      ,dato_tom                       DATE  PATH '$.tom'
+      ,nested                         PATH '$.inngangsvilkår[*]' columns (
+      utfall                          VARCHAR2(255 CHAR) PATH '$.utfall'
+      ,vilkaar                        VARCHAR2(255 CHAR) PATH '$.vilkår',
+      nested                          PATH '$.detaljertUtfall[*]' columns (
+      GJELDER_KRAVSTILLER             VARCHAR2(255 CHAR) PATH '$.gjelderKravstiller',
+      GJELDER_AKTIVITET_TYPE          VARCHAR2(255 CHAR) PATH '$.gjelderAktivitetType',
+      GJELDER_ORGANISASJONSNUMMER     VARCHAR2(255 CHAR) PATH '$.gjelderOrganisasjonsnummer',
+      GJELDER_AKTOR_ID                VARCHAR2(255 CHAR) PATH '$.gjelderAktørId',
+      GJELDER_ARBEIDSFORHOLD_ID       VARCHAR2(255 CHAR) PATH '$.gjelderArbeidsforholdId',
+      det_utfall                      VARCHAR2(255 CHAR) PATH '$.utfall'
           )
         )
       )
@@ -38,8 +38,9 @@ pre_final as (
 ),
 
 final as (
-  select p.*,
-  pk_pp_periode_inngangsvilkaar as FK_PP_PERIODE_INNGANGSVILKAAR
+  select 
+    p.*
+    ,pk_pp_periode_inngangsvilkaar as FK_PP_PERIODE_INNGANGSVILKAAR
   from pre_final p
   join pp_periode_inngangsvilkaar inn
   on p.kafka_offset = inn.kafka_offset

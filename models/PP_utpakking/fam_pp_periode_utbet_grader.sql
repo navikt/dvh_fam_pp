@@ -16,20 +16,20 @@ pre_final as (
   select * from pp_meta_data,
   json_table(melding, '$'
     columns (
-      nested path '$.perioder[*]' columns (
-      dato_fom         date path '$.fom'
-      ,dato_tom         date path '$.tom'
-      , nested path '$.utbetalingsgrader[*]' columns (
-         aktivitet_status       varchar2(255 char) path '$.aktivitetStatus'
-        ,arbeidsforhold_aktorid varchar2(255 char) path '$.arbeidsforhold.aktørId'
-        ,arbeidsforhold_id      varchar2(255 char) path '$.arbeidsforhold.arbeidsforholdId'
-        ,arbeidsforhold_orgnr   varchar2(255 char) path '$.arbeidsforhold.organisasjonsnummer'
-        ,arbeidsforhold_type    varchar2(255 char) path '$.arbeidsforhold.type'
-        ,dagsats                NUMBER path '$.dagsats'
-        ,faktisk_arbeidstid     varchar2(255 char) path '$.faktiskArbeidstid'
-        ,normal_arbeidstid      varchar2(255 char) path '$.normalArbeidstid'
-        ,utbetalingsgrad        NUMBER path '$.utbetalingsgrad'
-        ,bruker_er_mottaker     varchar2(255 char) path '$.brukerErMottaker'
+      nested PATH '$.perioder[*]' columns (
+      dato_fom         DATE PATH '$.fom'
+      ,dato_tom         DATE PATH '$.tom'
+      ,nested PATH '$.utbetalingsgrader[*]' columns (
+         aktivitet_status       VARCHAR2(255 CHAR) PATH '$.aktivitetStatus'
+        ,arbeidsforhold_aktorid VARCHAR2(255 CHAR) PATH '$.arbeidsforhold.aktørId'
+        ,arbeidsforhold_id      VARCHAR2(255 CHAR) PATH '$.arbeidsforhold.arbeidsforholdId'
+        ,arbeidsforhold_orgnr   VARCHAR2(255 CHAR) PATH '$.arbeidsforhold.organisasjonsnummer'
+        ,arbeidsforhold_type    VARCHAR2(255 CHAR) PATH '$.arbeidsforhold.type'
+        ,dagsats                NUMBER PATH '$.dagsats'
+        ,faktisk_arbeidstid     VARCHAR2(255 CHAR) PATH '$.faktiskArbeidstid'
+        ,normal_arbeidstid      VARCHAR2(255 CHAR) PATH '$.normalArbeidstid'
+        ,utbetalingsgrad        NUMBER PATH '$.utbetalingsgrad'
+        ,bruker_er_mottaker     VARCHAR2(255 CHAR) PATH '$.brukerErMottaker'
         )
       )
     )
@@ -39,7 +39,7 @@ pre_final as (
 
 final as (
   select
-     p.aktivitet_status
+    p.aktivitet_status
     ,p.arbeidsforhold_aktorid
     ,p.arbeidsforhold_id
     ,p.arbeidsforhold_orgnr
@@ -67,8 +67,6 @@ select
   ,ARBEIDSFORHOLD_ORGNR
   ,ARBEIDSFORHOLD_TYPE
   ,DAGSATS
-  ,cast(null as varchar2(4)) as DELYTELSE_ID_DIREKTE
-  ,cast(null as varchar2(4)) as DELYTELSE_ID_REFUSJON
   ,NORMAL_ARBEIDSTID
   ,FAKTISK_ARBEIDSTID
   ,UTBETALINGSGRAD

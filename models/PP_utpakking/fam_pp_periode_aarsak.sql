@@ -14,17 +14,17 @@ pp_perioder as (
 
 pre_final as (
   select * from pp_meta_data,
-  json_table(melding, '$'
-    columns (
-      nested path '$.perioder[*]' columns (
-      dato_fom         date path '$.fom'
-      ,dato_tom         date path '$.tom'
-      , nested path '$.årsaker[*]' columns (
-        aarsak varchar2(255 char) path '$[*]'
-        )
+    json_table(melding, '$'
+      columns (
+          nested            PATH '$.perioder[*]' columns (
+          dato_fom          DATE PATH '$.fom'
+          ,dato_tom         DATE PATH '$.tom'
+          ,nested           PATH '$.årsaker[*]' columns (
+              aarsak        VARCHAR2(255 CHAR) PATH '$[*]'
+            )
+          )
       )
-    )
-  ) j
+    ) j
   where aarsak is not null
 ),
 
