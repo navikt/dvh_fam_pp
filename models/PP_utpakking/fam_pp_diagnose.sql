@@ -3,7 +3,7 @@ WITH pp_meta_data AS (
 ),
 
 pp_fagsak AS (
-  select * from {{ref ('pp_meldinger_til_aa_pakke_ut')}}
+    select * from {{ ref ('fam_pp_fagsak') }}
 ),
 
 -- Hent diagnoser fra meldinger som ikke gjelder OLP
