@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='incremental'
+    )
+}}
+
 WITH pp_meta_data AS (
   select * from {{ref ('pp_meldinger_til_aa_pakke_ut')}}
 ),
@@ -12,6 +18,7 @@ select * from pp_meta_data,
   json_table(melding, '$'
     columns (
         vedtaks_tidspunkt   TIMESTAMP PATH '$.vedtakstidspunkt'
+        ,ytelse_type VARCHAR2(255 CHAR) PATH '$.ytelseType'
         ,nested              PATH '$.diagnosekoder[*]' 
         columns (
             kode              VARCHAR2(255 CHAR) PATH '$.kode'
