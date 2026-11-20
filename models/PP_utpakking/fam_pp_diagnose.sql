@@ -1,6 +1,10 @@
 {{
     config(
-        materialized='incremental'
+        materialized='incremental',
+        pre_hook=[
+            "BEGIN DBMS_STATS.GATHER_TABLE_STATS(ownname => 'DVH_FAM_PP', tabname => 'PP_MELDINGER_TIL_AA_PAKKE_UT'); END;",
+            "BEGIN DBMS_STATS.GATHER_TABLE_STATS(ownname => 'DVH_FAM_PP', tabname => 'FAM_PP_FAGSAK'); END;"
+        ]
     )
 }}
 
